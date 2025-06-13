@@ -12,7 +12,7 @@ function parseSubmission(submission) {
   //   return submission;
   return JSON.parse(submission);
 }
-const listOfKeys = [
+const listOfKeysToIncludeInOutput = [
   "legalName",
   "name",
   "stage",
@@ -38,7 +38,7 @@ function objectParserLogic(obj, accumulatedObj = {}, parentKey = null) {
 
     if (isNestedObject(currentValue)) {
       objectParserLogic(obj[key], accumulatedObj, fullKey);
-    } else if (listOfKeys.includes(fullKey)) {
+    } else if (listOfKeysToIncludeInOutput.includes(fullKey)) {
       accumulatedObj[fullKey] = obj[key];
     }
   }
